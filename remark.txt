@@ -1,4 +1,4 @@
-1.install git on your desktop https://git-scm.com/install/windows
+1.install git on your desktop https://git-scm.com/install/windows and https://desktop.github.com/download/
 2. go to github website
 3.create new repository
 4.copy echo "# project2569" >> README.md ไปวางใน terminal
