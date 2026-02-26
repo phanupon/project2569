@@ -1,0 +1,41 @@
+services:
+  # Database: MySQL 8.2
+  db:
+    image: mysql:8.2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  # Web Server: Apache 2.4 + PHP 8.2
+  php-apache:
+    build: . # <--- เปลี่ยนตรงนี้ (จุด . หมายถึง build จากโฟลเดอร์ปัจจุบัน)
+    image: php:8.2-apache
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./www:/var/www/html
+    depends_on:
+      - db
+
+  # phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpassword
+    depends_on:
+      - db
+
+volumes:
+  db_data:
