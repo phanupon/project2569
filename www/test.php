@@ -2,7 +2,7 @@
 $servername = "db"; // ต้องตรงกับชื่อ service ใน docker-compose
 $username = "root";
 $password = "rootpassword";
-$dbname = "my_database";
+$dbname = "my_database"; //ตั้งชื่อให้ตรงกับ docker
 
 // พยายามเชื่อมต่อ 5 ครั้ง ถ้าไม่ได้ให้รอครั้งละ 2 วินาที
 $max_retries = 5;
