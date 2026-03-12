@@ -9,6 +9,7 @@ if (($_SESSION['status'] ?? '') !== 'ADMIN') {
 }
 if (($_SESSION['status'] ?? '') == 'ADMIN') {
     echo "<p>Welcome, " . $_SESSION['username'] . "!</p>";
+    echo "<p><a href='logout_process.php'>Logout</a></p>";
 }
 if (($_SESSION['status'] ?? '') == '') {
     echo "Please log in.";
