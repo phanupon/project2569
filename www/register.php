@@ -2,7 +2,7 @@
 echo "Hello, World!";
 ?>
 
-<form action="register_process.php" method="get">
+<form action="register_process.php" method="post">
   <label for="username">First name:</label><br>
   <input type="text" id="name" name="name" required><br>
   <label for="lname">Login name:</label><br>
