@@ -7,6 +7,28 @@ if (($_SESSION['status'] ?? '') !== 'ADMIN') {
     header("Location: login.php");
     exit();
 }
+
+if(isset($_GET['delete'])){
+    $deleteid = $_GET['delete'];
+    
+    // 1. ใช้ Prepared Statement เพื่อความปลอดภัย
+    // 2. เปลี่ยนชื่อตารางให้เป็น employee (ให้ตรงกับตารางที่ใช้โชว์ข้อมูล)
+    $stmt = $conn->prepare("DELETE FROM employee WHERE id = ?");
+    $stmt->bind_param("i", $deleteid);
+    
+    if($stmt->execute()){
+        // ใช้ JavaScript ช่วยแจ้งเตือนและ Redirect
+        echo "<script>
+                alert('Delete Successfully');
+                window.location.href='admin_dashboard.php';
+              </script>";
+        exit();
+    } else {
+        echo "<script>alert('Error deleting record');</script>";
+    }
+    $stmt->close();
+}
+
 ?>
 
 <!DOCTYPE html>
